@@ -1,3 +1,5 @@
+Berikut adalah kode lengkap index.html yang sudah dikembangkan dengan sistem keranjang interaktif (+/-) untuk seluruh daftar menu yang sudah kamu lengkapi. Nomor WhatsApp juga sudah disesuaikan ke 089673605887.
+Kamu tinggal menyalin (copy-paste) seluruh kode di bawah ini untuk menggantikan isi file index.html di GitHub:
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -25,12 +27,12 @@
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
-            padding-bottom: 90px;
+            padding-bottom: 110px;
         }
 
         header {
             text-align: center;
-            padding: 30px 20px 20px;
+            padding: 25px 20px 15px;
             background: linear-gradient(180deg, #1e293b 0%, var(--bg-body) 100%);
             border-bottom: 1px solid var(--border-color);
         }
@@ -39,12 +41,12 @@
             color: var(--accent-color);
             font-size: 1.8rem;
             letter-spacing: 1px;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         header p {
             color: var(--text-sub);
-            font-size: 0.875rem;
+            font-size: 0.85rem;
         }
 
         .container {
@@ -55,12 +57,9 @@
 
         .section-title {
             color: var(--accent-color);
-            margin: 24px 0 12px 0;
-            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+            font-size: 1.05rem;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 6px;
         }
@@ -68,54 +67,112 @@
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 8px;
+            gap: 10px;
         }
 
         .menu-card {
             background-color: var(--bg-card);
             border-radius: 10px;
-            padding: 12px 16px;
+            padding: 12px 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
+        .menu-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
         .menu-name {
             font-size: 0.95rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-main);
         }
 
         .menu-price {
             font-weight: 700;
             color: var(--accent-color);
-            font-size: 0.95rem;
-            white-space: nowrap;
-            margin-left: 12px;
+            font-size: 0.85rem;
         }
 
-        .floating-wa {
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-qty {
+            background: var(--accent-color);
+            color: #0f172a;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-count {
+            font-weight: bold;
+            font-size: 0.95rem;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .cart-bar {
             position: fixed;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 32px);
-            max-width: 560px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1e293b;
+            border-top: 2px solid var(--accent-color);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .cart-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-total-text {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+        }
+
+        .cart-total-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .btn-wa-checkout {
             background-color: var(--wa-color);
             color: #ffffff;
-            text-align: center;
-            padding: 14px;
-            border-radius: 12px;
-            text-decoration: none;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
             font-weight: 700;
-            font-size: 1rem;
-            box-shadow: 0 10px 25px -5px rgba(34, 197, 94, 0.4);
-            z-index: 100;
-        }
-
-        .floating-wa:active {
-            transform: translateX(-50%) scale(0.98);
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
     </style>
 </head>
@@ -123,116 +180,182 @@
 
     <header>
         <h1>☕ WARKOP BABE</h1>
-        <p>Nongkrong Santai • Harga Bersahabat</p>
+        <p>Pilih menu di bawah, pesan otomatis via WA</p>
     </header>
 
     <div class="container">
         
         <div class="section-title">🍳 Makanan & Camilan</div>
         <div class="menu-grid">
-            <div class="menu-card"><span class="menu-name">Nasi Goreng</span><span class="menu-price">Rp 17.000</span></div>
-            <div class="menu-card"><span class="menu-name">Omelette</span><span class="menu-price">Rp 17.000</span></div>
-            <div class="menu-card"><span class="menu-name">Mie Bakso</span><span class="menu-price">Rp 15.000</span></div>
-            <div class="menu-card"><span class="menu-name">Mie Nyemek</span><span class="menu-price">Rp 15.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nasi Magelang</span><span class="menu-price">Rp 17.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nasi Telur Sosis Sambal Bawang</span><span class="menu-price">Rp 13.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nasi Telur Sambal Bawang</span><span class="menu-price">Rp 10.000</span></div>
-            <div class="menu-card"><span class="menu-name">Roti Bakar</span><span class="menu-price">Rp 10.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nugget</span><span class="menu-price">Rp 10.000</span></div>
-            <div class="menu-card"><span class="menu-name">Kentang Goreng</span><span class="menu-price">Rp 15.000</span></div>
-            <div class="menu-card"><span class="menu-name">Kentang Sosis</span><span class="menu-price">Rp 20.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nasi Putih</span><span class="menu-price">Rp 5.000</span></div>
+            <div class="menu-card" data-name="Nasi Goreng" data-price="17000"><div class="menu-details"><span class="menu-name">Nasi Goreng</span><span class="menu-price">Rp 17.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Omelette" data-price="17000"><div class="menu-details"><span class="menu-name">Omelette</span><span class="menu-price">Rp 17.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Mie Bakso" data-price="15000"><div class="menu-details"><span class="menu-name">Mie Bakso</span><span class="menu-price">Rp 15.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Mie Nyemek" data-price="15000"><div class="menu-details"><span class="menu-name">Mie Nyemek</span><span class="menu-price">Rp 15.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nasi Magelang" data-price="17000"><div class="menu-details"><span class="menu-name">Nasi Magelang</span><span class="menu-price">Rp 17.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nasi Telur Sosis Sambal Bawang" data-price="13000"><div class="menu-details"><span class="menu-name">Nasi Telur Sosis Sambal Bawang</span><span class="menu-price">Rp 13.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nasi Telur Sambal Bawang" data-price="10000"><div class="menu-details"><span class="menu-name">Nasi Telur Sambal Bawang</span><span class="menu-price">Rp 10.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Roti Bakar" data-price="10000"><div class="menu-details"><span class="menu-name">Roti Bakar</span><span class="menu-price">Rp 10.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nugget" data-price="10000"><div class="menu-details"><span class="menu-name">Nugget</span><span class="menu-price">Rp 10.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Kentang Goreng" data-price="15000"><div class="menu-details"><span class="menu-name">Kentang Goreng</span><span class="menu-price">Rp 15.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Kentang Sosis" data-price="20000"><div class="menu-details"><span class="menu-name">Kentang Sosis</span><span class="menu-price">Rp 20.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nasi Putih" data-price="5000"><div class="menu-details"><span class="menu-name">Nasi Putih</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
         </div>
 
         <div class="section-title">🍜 Indomie Series</div>
         <div class="menu-grid">
-            <div class="menu-card"><span class="menu-name">Indomie Goreng</span><span class="menu-price">Rp 8.000</span></div>
-            <div class="menu-card"><span class="menu-name">Indomie Hype Geprek</span><span class="menu-price">Rp 8.000</span></div>
-            <div class="menu-card"><span class="menu-name">Indomie Soto</span><span class="menu-price">Rp 8.000</span></div>
-            <div class="menu-card"><span class="menu-name">Indomie Ayam Bawang</span><span class="menu-price">Rp 8.000</span></div>
-            <div class="menu-card"><span class="menu-name">Indomie Kari Ayam</span><span class="menu-price">Rp 8.000</span></div>
-            <div class="menu-card"><span class="menu-name">Indomie Rendang</span><span class="menu-price">Rp 8.000</span></div>
+            <div class="menu-card" data-name="Indomie Goreng" data-price="8000"><div class="menu-details"><span class="menu-name">Indomie Goreng</span><span class="menu-price">Rp 8.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Indomie Hype Geprek" data-price="8000"><div class="menu-details"><span class="menu-name">Indomie Hype Geprek</span><span class="menu-price">Rp 8.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Indomie Soto" data-price="8000"><div class="menu-details"><span class="menu-name">Indomie Soto</span><span class="menu-price">Rp 8.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Indomie Ayam Bawang" data-price="8000"><div class="menu-details"><span class="menu-name">Indomie Ayam Bawang</span><span class="menu-price">Rp 8.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Indomie Kari Ayam" data-price="8000"><div class="menu-details"><span class="menu-name">Indomie Kari Ayam</span><span class="menu-price">Rp 8.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Indomie Rendang" data-price="8000"><div class="menu-details"><span class="menu-name">Indomie Rendang</span><span class="menu-price">Rp 8.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
         </div>
 
         <div class="section-title">➕ Extra & Tambahan</div>
         <div class="menu-grid">
-            <div class="menu-card"><span class="menu-name">Extra Telur</span><span class="menu-price">Rp 3.000</span></div>
-            <div class="menu-card"><span class="menu-name">Extra Sosis</span><span class="menu-price">Rp 3.000</span></div>
-            <div class="menu-card"><span class="menu-name">Extra Bakso</span><span class="menu-price">Rp 3.000</span></div>
-            <div class="menu-card"><span class="menu-name">Extra Nugget</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Extra Susu</span><span class="menu-price">Rp 3.000</span></div>
-            <div class="menu-card"><span class="menu-name">Es Batu</span><span class="menu-price">Rp 2.000</span></div>
+            <div class="menu-card" data-name="Extra Telur" data-price="3000"><div class="menu-details"><span class="menu-name">Extra Telur</span><span class="menu-price">Rp 3.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Extra Sosis" data-price="3000"><div class="menu-details"><span class="menu-name">Extra Sosis</span><span class="menu-price">Rp 3.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Extra Bakso" data-price="3000"><div class="menu-details"><span class="menu-name">Extra Bakso</span><span class="menu-price">Rp 3.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Extra Nugget" data-price="5000"><div class="menu-details"><span class="menu-name">Extra Nugget</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Extra Susu" data-price="3000"><div class="menu-details"><span class="menu-name">Extra Susu</span><span class="menu-price">Rp 3.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Es Batu" data-price="2000"><div class="menu-details"><span class="menu-name">Es Batu</span><span class="menu-price">Rp 2.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
         </div>
 
         <div class="section-title">🍹 Nutrisari, Jasjus & Marimas</div>
         <div class="menu-grid">
-            <div class="menu-card"><span class="menu-name">Nutri Sari Jeruk Peras</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Cincau</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Coco Pandan</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Jeruk Manis</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Kelapa Muda</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutrisari Leci</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Sweet Guava</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Sweet Mango</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Milky Orange</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Semangka</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Blewah</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Sirsak</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Markisa</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutri Sari Apel</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutrisari Melon</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutrisari Lemontea</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutrisari Gula Asem</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Nutrisari Madu Kurma</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Jasjus Nipis</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Jasjus Kelapa Muda</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Jasjus Anggur</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Jasjus Mangga</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Jasjus Jambu</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Jasjus Sirsak</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Jasjus Lemon</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Marimas Nanas</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Marimas Mangga</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Marimas Jeruk Nipis</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Marimas Es Kopi</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Marimas Jeruk Peras</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Marimas Nanas Madu</span><span class="menu-price">Rp 5.000</span></div>
+            <div class="menu-card" data-name="Nutri Sari Jeruk Peras" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Jeruk Peras</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Cincau" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Cincau</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Coco Pandan" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Coco Pandan</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Jeruk Manis" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Jeruk Manis</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Kelapa Muda" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Kelapa Muda</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutrisari Leci" data-price="5000"><div class="menu-details"><span class="menu-name">Nutrisari Leci</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Sweet Guava" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Sweet Guava</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Sweet Mango" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Sweet Mango</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Milky Orange" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Milky Orange</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Semangka" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Semangka</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Blewah" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Blewah</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Sirsak" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Sirsak</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Markisa" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Markisa</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutri Sari Apel" data-price="5000"><div class="menu-details"><span class="menu-name">Nutri Sari Apel</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutrisari Melon" data-price="5000"><div class="menu-details"><span class="menu-name">Nutrisari Melon</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutrisari Lemontea" data-price="5000"><div class="menu-details"><span class="menu-name">Nutrisari Lemontea</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutrisari Gula Asem" data-price="5000"><div class="menu-details"><span class="menu-name">Nutrisari Gula Asem</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Nutrisari Madu Kurma" data-price="5000"><div class="menu-details"><span class="menu-name">Nutrisari Madu Kurma</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Jasjus Nipis" data-price="5000"><div class="menu-details"><span class="menu-name">Jasjus Nipis</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Jasjus Kelapa Muda" data-price="5000"><div class="menu-details"><span class="menu-name">Jasjus Kelapa Muda</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Jasjus Anggur" data-price="5000"><div class="menu-details"><span class="menu-name">Jasjus Anggur</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Jasjus Mangga" data-price="5000"><div class="menu-details"><span class="menu-name">Jasjus Mangga</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Jasjus Jambu" data-price="5000"><div class="menu-details"><span class="menu-name">Jasjus Jambu</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Jasjus Sirsak" data-price="5000"><div class="menu-details"><span class="menu-name">Jasjus Sirsak</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Jasjus Lemon" data-price="5000"><div class="menu-details"><span class="menu-name">Jasjus Lemon</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Marimas Nanas" data-price="5000"><div class="menu-details"><span class="menu-name">Marimas Nanas</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Marimas Mangga" data-price="5000"><div class="menu-details"><span class="menu-name">Marimas Mangga</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Marimas Jeruk Nipis" data-price="5000"><div class="menu-details"><span class="menu-name">Marimas Jeruk Nipis</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Marimas Es Kopi" data-price="5000"><div class="menu-details"><span class="menu-name">Marimas Es Kopi</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Marimas Jeruk Peras" data-price="5000"><div class="menu-details"><span class="menu-name">Marimas Jeruk Peras</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Marimas Nanas Madu" data-price="5000"><div class="menu-details"><span class="menu-name">Marimas Nanas Madu</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
         </div>
 
         <div class="section-title">☕ Kopi & Minuman Sachet</div>
         <div class="menu-grid">
-            <div class="menu-card"><span class="menu-name">Pop Ice Chocolate</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">Pop Ice Es Doger</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">Pop Ice Avokado</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">Pop Ice Permen Karet</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">Chocolatos Chocolate</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">Chocolatos Matcha</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">Torabika Cappucino</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">Goodday Cappuccino</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">Goodday Freeze</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">ABC Kelepon</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">Teh Tarik</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">Drink Beng-Beng</span><span class="menu-price">Rp 7.000</span></div>
-            <div class="menu-card"><span class="menu-name">Kapal Api SPC Mix</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Kapal Api Pahit</span><span class="menu-price">Rp 4.000</span></div>
-            <div class="menu-card"><span class="menu-name">Top Coffee Gula Aren</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Indocafe Coffeemix</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">White Coffee</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">ABC Susu</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Susu Jahe</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Jahe Merah</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Susu Bendera</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Anget Sari Susu Jahe</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Kuku Bima</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Extra Joss</span><span class="menu-price">Rp 5.000</span></div>
-            <div class="menu-card"><span class="menu-name">Teh Manis</span><span class="menu-price">Rp 5.000</span></div>
+            <div class="menu-card" data-name="Pop Ice Chocolate" data-price="7000"><div class="menu-details"><span class="menu-name">Pop Ice Chocolate</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Pop Ice Es Doger" data-price="7000"><div class="menu-details"><span class="menu-name">Pop Ice Es Doger</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Pop Ice Avokado" data-price="7000"><div class="menu-details"><span class="menu-name">Pop Ice Avokado</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Pop Ice Permen Karet" data-price="7000"><div class="menu-details"><span class="menu-name">Pop Ice Permen Karet</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Chocolatos Chocolate" data-price="7000"><div class="menu-details"><span class="menu-name">Chocolatos Chocolate</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Chocolatos Matcha" data-price="7000"><div class="menu-details"><span class="menu-name">Chocolatos Matcha</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Torabika Cappucino" data-price="7000"><div class="menu-details"><span class="menu-name">Torabika Cappucino</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Goodday Cappuccino" data-price="7000"><div class="menu-details"><span class="menu-name">Goodday Cappuccino</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Goodday Freeze" data-price="7000"><div class="menu-details"><span class="menu-name">Goodday Freeze</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="ABC Kelepon" data-price="7000"><div class="menu-details"><span class="menu-name">ABC Kelepon</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Teh Tarik" data-price="7000"><div class="menu-details"><span class="menu-name">Teh Tarik</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Drink Beng-Beng" data-price="7000"><div class="menu-details"><span class="menu-name">Drink Beng-Beng</span><span class="menu-price">Rp 7.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Kapal Api SPC Mix" data-price="5000"><div class="menu-details"><span class="menu-name">Kapal Api SPC Mix</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Kapal Api Pahit" data-price="4000"><div class="menu-details"><span class="menu-name">Kapal Api Pahit</span><span class="menu-price">Rp 4.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Top Coffee Gula Aren" data-price="5000"><div class="menu-details"><span class="menu-name">Top Coffee Gula Aren</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Indocafe Coffeemix" data-price="5000"><div class="menu-details"><span class="menu-name">Indocafe Coffeemix</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="White Coffee" data-price="5000"><div class="menu-details"><span class="menu-name">White Coffee</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="ABC Susu" data-price="5000"><div class="menu-details"><span class="menu-name">ABC Susu</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Susu Jahe" data-price="5000"><div class="menu-details"><span class="menu-name">Susu Jahe</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Jahe Merah" data-price="5000"><div class="menu-details"><span class="menu-name">Jahe Merah</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Susu Bendera" data-price="5000"><div class="menu-details"><span class="menu-name">Susu Bendera</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Anget Sari Susu Jahe" data-price="5000"><div class="menu-details"><span class="menu-name">Anget Sari Susu Jahe</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Kuku Bima" data-price="5000"><div class="menu-details"><span class="menu-name">Kuku Bima</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Extra Joss" data-price="5000"><div class="menu-details"><span class="menu-name">Extra Joss</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
+            <div class="menu-card" data-name="Teh Manis" data-price="5000"><div class="menu-details"><span class="menu-name">Teh Manis</span><span class="menu-price">Rp 5.000</span></div><div class="qty-controls"><button class="btn-qty" onclick="updateQty(this, -1)">-</button><span class="qty-count">0</span><button class="btn-qty" onclick="updateQty(this, 1)">+</button></div></div>
         </div>
 
     </div>
 
-    <a href="https://wa.me/6289673605887?text=Halo%20Warkop%20Babe,%20saya%20mau%20pesan:" class="floating-wa" target="_blank">
-        💬 Pesan via WhatsApp
-    </a>
+    <div class="cart-bar">
+        <div class="cart-info">
+            <span class="cart-total-text" id="cart-item-count">0 Menu Dipilih</span>
+            <span class="cart-total-price" id="cart-total-price">Rp 0</span>
+        </div>
+        <button class="btn-wa-checkout" onclick="sendToWA()">
+            💬 Pesan via WA
+        </button>
+    </div>
 
+    <script>
+        let cart = {};
+
+        function updateQty(btn, change) {
+            const card = btn.closest('.menu-card');
+            const name = card.dataset.name;
+            const price = parseInt(card.dataset.price);
+            const qtySpan = card.querySelector('.qty-count');
+            
+            let currentQty = cart[name] ? cart[name].qty : 0;
+            let newQty = currentQty + change;
+
+            if (newQty < 0) newQty = 0;
+
+            if (newQty === 0) {
+                delete cart[name];
+            } else {
+                cart[name] = { price: price, qty: newQty };
+            }
+
+            qtySpan.textContent = newQty;
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            let count = 0;
+
+            for (let item in cart) {
+                total += cart[item].price * cart[item].qty;
+                count += cart[item].qty;
+            }
+
+            document.getElementById('cart-item-count').textContent = count + " Menu Dipilih";
+            document.getElementById('cart-total-price').textContent = "Rp " + total.toLocaleString('id-ID');
+        }
+
+        function sendToWA() {
+            let keys = Object.keys(cart);
+            if (keys.length === 0) {
+                alert("Silakan pilih minimal 1 menu terlebih dahulu!");
+                return;
+            }
+
+            let text = "Halo Warkop Babe, saya mau pesan:\n\n";
+            let total = 0;
+
+            keys.forEach((item, index) => {
+                let subtotal = cart[item].price * cart[item].qty;
+                total += subtotal;
+                text += `${index + 1}. ${item} (${cart[item].qty}x) = Rp ${subtotal.toLocaleString('id-ID')}\n`;
+            });
+
+            text += `\n*Total Pembayaran: Rp ${total.toLocaleString('id-ID')}*`;
+
+            let waUrl = "https://wa.me/6289673605887?text=" + encodeURIComponent(text);
+            window.open(waUrl, '_blank');
+        }
+    </script>
 </body>
 </html>
+
